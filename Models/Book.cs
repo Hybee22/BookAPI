@@ -15,7 +15,7 @@ namespace BookApi.Models
 
         [Required]
         [StringLength(10, MinimumLength = 3, ErrorMessage = "ISBN must be between 3 and 10 characters")]
-        public int Isbn { get; set; }
+        public string Isbn { get; set; }
 
         [Required]
         [MaxLength(200, ErrorMessage = "Title cannot be more than 200 charcters")]
