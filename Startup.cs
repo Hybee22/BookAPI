@@ -26,21 +26,28 @@ namespace BookApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            // Database Connection String
             services.AddDbContext<BookDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("LocalBookDB"));
-
             });
 
-
+            // Adding MVC
             services.AddMvc();
 
-            services.AddScoped<ICountryRepository, CountryRepository>();
-
+            // Author
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            // Book
+            services.AddScoped<IBookRepository, BookRepository>();
+            // Category
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            // Country
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            // Review
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            // Reviewer
+            services.AddScoped<IReviewerRepository, ReviewerRepository>();
 
-            // var connectionString = Configuration["connectionStrings: bookDbConnectionString"];
 
         }
 
@@ -54,9 +61,11 @@ namespace BookApi
 
             app.UseRouting();
 
+            // Seeding Database with Dummy Data
             // context.SeedDataContext();
 
             
+            // MVC Endpoints Configuration
                 app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute( 

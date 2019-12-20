@@ -10,7 +10,7 @@ namespace BookApi.Services
     {
         private BookDbContext _categoryContext;
 
-        public CategoryRepository(BookDbContext categoryContext, BookCategory bookCategory)
+        public CategoryRepository(BookDbContext categoryContext)
         {
             _categoryContext = categoryContext;
         }

@@ -49,8 +49,8 @@ namespace BookApi.Controllers
         [ProducesResponseType(200, Type = typeof(Category_DTO))]
         public IActionResult GetCategory(int categoryId)
         {
-            // if (!_categoryRepository.CategoryExists(categoryId))
-                // return NotFound();
+             if (!_categoryRepository.CategoryExists(categoryId))
+                 return NotFound();
 
             var category = _categoryRepository.GetCategory(categoryId);
 
@@ -74,6 +74,8 @@ namespace BookApi.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Category_DTO>))]
         public IActionResult GetAllCategoriesOfABook(int bookId)
         {
+            // Check if book is valid
+
             var categories = _categoryRepository.GetAllCategoriesOfABook(bookId);
 
             if (!ModelState.IsValid)
@@ -98,6 +100,10 @@ namespace BookApi.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Book_DTO>))]
         public IActionResult GetAllBooksForCategory(int categoryId)
         {
+
+            if (!_categoryRepository.CategoryExists(categoryId))
+                return NotFound();
+
             var books = _categoryRepository.GetAllBooksForCategory(categoryId);
 
             if (!ModelState.IsValid)
