@@ -14,7 +14,7 @@ namespace BookApi.Services
         }
 
         public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookAuthor> BookAuthors { get; set; }
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<Category> Categories { get; set; }

@@ -33,15 +33,19 @@ namespace BookApi
 
             });
 
+
             services.AddMvc();
+
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             // var connectionString = Configuration["connectionStrings: bookDbConnectionString"];
 
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BookDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -52,15 +56,15 @@ namespace BookApi
 
             // context.SeedDataContext();
 
-            /* 
+            
                 app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute( 
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{:id?}"
+                    );
             }); 
-            */
+            
         }
     }
 }
